@@ -1,0 +1,810 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cybersecurity portfolio of an aspiring SOC Analyst L1 focused on security monitoring, log analysis and incident response.">
+  <title>Venkata Reddy | SOC Analyst Portfolio</title>
+
+  <style>
+    :root {
+      --bg: #070a08;
+      --panel: #0d130f;
+      --green: #39ff88;
+      --green-soft: #a4ffc5;
+      --text: #e6f2e9;
+      --muted: #91a197;
+      --border: #203c2b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Consolas, "Courier New", monospace;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    ::selection {
+      background: var(--green);
+      color: #071009;
+    }
+
+    .container {
+      width: min(1080px, 90%);
+      margin: auto;
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      margin-bottom: 12px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 35px;
+      max-width: 700px;
+    }
+
+    .section-title::before {
+      content: "// ";
+      color: var(--green);
+    }
+
+    /* Navigation */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 10, 8, 0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.8rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    /* Hero */
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background-image:
+        linear-gradient(rgba(57,255,136,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,136,.035) 1px, transparent 1px);
+      background-size: 35px 35px;
+    }
+
+    .hero-content {
+      padding: 75px 0;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 7vw, 4.8rem);
+      line-height: 1.15;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      max-width: 670px;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .terminal {
+      max-width: 690px;
+      padding: 20px;
+      background: rgba(13, 19, 15, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 30px 0;
+      box-shadow: 0 0 35px rgba(57, 255, 136, 0.05);
+    }
+
+    .terminal-bar {
+      display: flex;
+      gap: 7px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+    }
+
+    .dot {
+      height: 9px;
+      width: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      opacity: 0.65;
+    }
+
+    .terminal p {
+      margin: 5px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .prompt {
+      color: var(--green);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 17px;
+      background: var(--green);
+      vertical-align: middle;
+      animation: blink 1s steps(2) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 18px;
+      border: 1px solid var(--green);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: #061009;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(57, 255, 136, 0.16);
+    }
+
+    /* About */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 25px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 25px;
+    }
+
+    .panel h3 {
+      color: var(--green);
+      margin-bottom: 14px;
+      font-size: 1rem;
+    }
+
+    .panel p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .info-line {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      overflow-wrap: anywhere;
+    }
+
+    .info-line:last-child {
+      border-bottom: 0;
+    }
+
+    /* Skills */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      padding: 22px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--green);
+      transform: translateY(-3px);
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      color: var(--green-soft);
+      background: #102218;
+      border: 1px solid #234832;
+      border-radius: 3px;
+      padding: 4px 8px;
+      font-size: 0.76rem;
+    }
+
+    /* Projects */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 24px;
+    }
+
+    .project-number {
+      color: var(--green);
+      font-size: 0.8rem;
+    }
+
+    .project-card h3 {
+      margin: 12px 0;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .status {
+      display: inline-block;
+      color: var(--green-soft);
+      border: 1px solid var(--border);
+      padding: 4px 9px;
+      margin-top: 18px;
+      font-size: 0.74rem;
+    }
+
+    /* Learning and certifications */
+
+    .learning-list {
+      list-style: none;
+    }
+
+    .learning-list li {
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      color: var(--muted);
+    }
+
+    .learning-list li::before {
+      content: "> ";
+      color: var(--green);
+    }
+
+    /* Contact */
+
+    .contact-panel {
+      text-align: center;
+      padding: 45px 25px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+    }
+
+    .contact-panel p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 15px auto;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.78rem;
+    }
+
+    /* Reveal sections as they enter view */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      nav {
+        padding: 14px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">VR<span class="green">_SEC</span></a>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#learning">Learning</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <p class="eyebrow">[ CYBERSECURITY PORTFOLIO ]</p>
+
+        <h1>
+          Hello, I'm<br>
+          <span class="green">Venkata Reddy.</span>
+        </h1>
+
+        <p class="hero-description">
+          Aspiring SOC Analyst L1 transitioning from Civil Engineering
+          into cybersecurity. Focused on learning security monitoring,
+          log analysis, networking and incident investigation.
+        </p>
+
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <p><span class="prompt">venkat@security:~$</span> whoami</p>
+          <p>Aspiring SOC Analyst | Cybersecurity Learner</p>
+
+          <p><span class="prompt">venkat@security:~$</span> cat focus.txt</p>
+          <p>Security monitoring, SIEM, networking, Windows & Linux</p>
+
+          <p><span class="prompt">venkat@security:~$</span> status</p>
+          <p class="green">Learning. Practising. Improving.</p>
+
+          <p><span class="prompt">venkat@security:~$</span> <span class="cursor"></span></p>
+        </div>
+
+        <div class="buttons">
+          <a class="btn btn-primary" href="#projects">Explore Projects</a>
+          <a class="btn" href="venkat_resume.pdf" download>Download Resume</a>
+          <a class="btn" href="#contact">Contact Me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section reveal" id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-intro">
+          My background, career direction and learning goals.
+        </p>
+
+        <div class="about-grid">
+          <div class="panel">
+            <h3>$ cat about_me.txt</h3>
+
+            <p>
+              I am a B.Tech Civil Engineering graduate transitioning
+              into cybersecurity, with a focus on Security Operations
+              Center (SOC) fundamentals.
+            </p>
+
+            <p>
+              I am developing my knowledge of networking, Windows,
+              Linux, security logs, SIEM tools and incident investigation.
+              My goal is to build practical skills that prepare me for
+              an entry-level SOC Analyst role.
+            </p>
+
+            <p>
+              I believe in hands-on practice, documenting what I learn,
+              and understanding why an alert matters instead of simply
+              following instructions.
+            </p>
+          </div>
+
+          <div class="panel">
+            <h3>$ system_info</h3>
+            <div class="info-line">
+              <span class="muted">Education:</span><br>
+              B.Tech Civil Engineering
+            </div>
+            <div class="info-line">
+              <span class="muted">Career goal:</span><br>
+              SOC Analyst L1
+            </div>
+            <div class="info-line">
+              <span class="muted">Experience:</span><br>
+              Entry-level candidate
+            </div>
+            <div class="info-line">
+              <span class="muted">Learning focus:</span><br>
+              Blue Team / Security Operations
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section reveal" id="skills">
+      <div class="container">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-intro">
+          Areas I am learning and practising. This list is not a claim
+          of professional proficiency.
+        </p>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3><span class="green">01.</span> Networking</h3>
+            <p>Building a foundation in network traffic and communication.</p>
+            <div class="tag-list">
+              <span class="tag">TCP/IP</span>
+              <span class="tag">DNS</span>
+              <span class="tag">HTTP</span>
+              <span class="tag">OSI Model</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3><span class="green">02.</span> Operating Systems</h3>
+            <p>Learning operating-system fundamentals and log sources.</p>
+            <div class="tag-list">
+              <span class="tag">Windows</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Command Line</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3><span class="green">03.</span> Security Tools</h3>
+            <p>Developing familiarity with traffic analysis and scanning.</p>
+            <div class="tag-list">
+              <span class="tag">Wireshark</span>
+              <span class="tag">Nmap</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3><span class="green">04.</span> SIEM</h3>
+            <p>Learning how security logs are searched and investigated.</p>
+            <div class="tag-list">
+              <span class="tag">Splunk</span>
+              <span class="tag">Microsoft Sentinel</span>
+              <span class="tag">KQL</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3><span class="green">05.</span> Security Operations</h3>
+            <p>Studying the foundations of alert triage and investigation.</p>
+            <div class="tag-list">
+              <span class="tag">SOC</span>
+              <span class="tag">Incident Response</span>
+              <span class="tag">MITRE ATT&CK</span>
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <h3><span class="green">06.</span> Scripting</h3>
+            <p>Building beginner programming and automation knowledge.</p>
+            <div class="tag-list">
+              <span class="tag">Python Fundamentals</span>
+              <span class="tag">Log Analysis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section reveal" id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects & Labs</h2>
+        <p class="section-intro">
+          These are planned learning projects, not completed work.
+          Update each card only after doing the lab and documenting the results.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <span class="project-number">LAB_001</span>
+            <h3>Windows Failed Login Analysis</h3>
+            <p>
+              Planned lab: examine Windows security events, identify
+              repeated failed logins, and document suspicious patterns.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Windows Event Logs</span>
+              <span class="tag">Investigation</span>
+            </div>
+            <span class="status">PLANNED</span>
+          </article>
+
+          <article class="project-card">
+            <span class="project-number">LAB_002</span>
+            <h3>SIEM Log Investigation</h3>
+            <p>
+              Planned lab: ingest sample security logs, search for
+              suspicious activity, and record investigation findings.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Splunk / Sentinel</span>
+              <span class="tag">Queries</span>
+            </div>
+            <span class="status">PLANNED</span>
+          </article>
+
+          <article class="project-card">
+            <span class="project-number">LAB_003</span>
+            <h3>Network Traffic Analysis</h3>
+            <p>
+              Planned lab: inspect a permitted practice capture,
+              filter traffic, and explain suspicious or unusual connections.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Wireshark</span>
+              <span class="tag">TCP/IP</span>
+            </div>
+            <span class="status">PLANNED</span>
+          </article>
+
+          <article class="project-card">
+            <span class="project-number">LAB_004</span>
+            <h3>Python Log Search</h3>
+            <p>
+              Planned lab: write a beginner script that searches a text
+              log for failed-login messages and summarizes matches.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">Automation</span>
+            </div>
+            <span class="status">PLANNED</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARNING -->
+    <section class="section reveal" id="learning">
+      <div class="container">
+        <h2 class="section-title">Learning & Certifications</h2>
+        <p class="section-intro">
+          My current development priorities and credential status.
+        </p>
+
+        <div class="panel">
+          <h3>$ cat learning_roadmap.txt</h3>
+          <ul class="learning-list">
+            <li>Networking fundamentals and common protocols</li>
+            <li>Windows and Linux administration basics</li>
+            <li>Security logs, alert triage and incident investigation</li>
+            <li>SIEM queries and security monitoring workflows</li>
+            <li>Hands-on blue-team labs and project documentation</li>
+          </ul>
+
+          <p style="margin-top: 20px;">
+            <span class="green">Certifications:</span>
+            No certifications are listed here yet. This section can be
+            updated when a certification has actually been earned.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section reveal" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <p class="eyebrow">[ ESTABLISH_CONNECTION ]</p>
+          <h2 class="section-title">Let's Connect</h2>
+          <p>
+            I am interested in entry-level cybersecurity opportunities,
+            learning from security professionals, and growing in SOC operations.
+          </p>
+
+          <div class="contact-links">
+            <a class="btn btn-primary"
+               href="mailto:venkatareddycherukula8@gmail.com">
+              Email Me
+            </a>
+
+            <a class="btn"
+               href="https://www.linkedin.com/in/ch-venkata-reddy-7460bb255/"
+               target="_blank"
+               rel="noopener noreferrer">
+              LinkedIn Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        <span class="green">VR_SEC</span> |
+        Built for learning, security and continuous improvement.
+      </p>
+      <p>© <span id="year"></span> Venkata Reddy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Keep the copyright year current.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Reveal sections smoothly as they enter the screen.
+    const sections = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      sections.forEach((section) => observer.observe(section));
+    } else {
+      sections.forEach((section) => section.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
